@@ -73,5 +73,5 @@ npm start
 Frontend server will run on <http://localhost:4200>
 
 #### Database Schema
-![ER Diagram](/screenshots/schema.png?raw=true)
+![ER Diagram](/screenshots/DBschema.png?raw=true)
 
