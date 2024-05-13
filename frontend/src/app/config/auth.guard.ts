@@ -22,9 +22,6 @@ export class AuthGuard {
     | boolean
     | UrlTree {
     if (this.authService.isLoggedIn !== true) {
-      if (typeof localStorage !== 'undefined') {
-        window.alert('Access not allowed!');
-      }
       this.router.navigate(['log-in']);
     }
     return true;
