@@ -1,0 +1,109 @@
+<h1>NEW APPLICATIONS LIST</h1>
+<div class="mat-elevation-z8">
+  <div fxLayoutAlign="center center">
+    <form [formGroup]="searchForm" (ngSubmit)="filter()">
+      <mat-form-field style="width:300px; padding-left: 15px; height: 95px;">
+        <input matInput type="text"
+               formControlName="searchFld" placeholder="Enter search text">
+      </mat-form-field>
+
+      <mat-form-field style="padding-left: 15px; height: 95px;">
+        <mat-label>MM/DD/YYYY</mat-label>
+        <input matInput formControlName="createdOn" [matDatepicker]="picker">
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field style="padding-left: 15px; height: 95px;">
+        <mat-label>MM/DD/YYYY</mat-label>
+        <input matInput formControlName="updatedOn" [matDatepicker]="picker2">
+        <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+
+      <span style="padding-left: 15px; height: 95px;">
+        <button mat-stroked-button color="primary"><mat-icon>search</mat-icon>Search</button>
+      </span>
+    </form>
+  </div>
+<div>
+  <button mat-flat-button  color="primary" (click)="exportCSV()">CSV</button>
+  <button mat-flat-button  color="primary">EXCEL</button>
+  <button mat-flat-button  color="primary">PDF</button>
+  <button mat-flat-button  color="primary">PRINT</button>
+  <button mat-flat-button  color="primary" style="float: right;" (click)="createApp()">Create Application</button>
+</div>
+  <table mat-table [dataSource]="dataSource" matSort matSortActive="id" matSortDisableClear="true"
+         matSortDirection="desc">
+
+    <ng-container matColumnDef="seqNo">
+      <th mat-header-cell *matHeaderCellDef> # </th>
+      <td mat-cell *matCellDef="let element; let i = index"> {{i + 1}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by application id"> Application ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="salesAgentEmail">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Sales Agent Id"> Sales Agent Id </th>
+      <td mat-cell *matCellDef="let element"> {{element.salesAgentEmail}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="accountType">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Account Type"> Account Type </th>
+      <td mat-cell *matCellDef="let element"> {{element.accountType}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="createdAt">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Created on"> Created on </th>
+      <td mat-cell *matCellDef="let element"> {{element.createdAt| date: 'dd-MM-yyyy hh:mm:ss a'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="applicationStatus">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Application Status"> Application Status </th>
+      <td mat-cell *matCellDef="let element"> {{element.applicationStatus}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="businessCategory">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Business Category"> Business Category </th>
+      <td mat-cell *matCellDef="let element"> {{element.businessCategory}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="updatedAt">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Business Category"> Last Action On </th>
+      <td mat-cell *matCellDef="let element"> {{element.updatedAt| date: 'dd-MM-yyyy hh:mm:ss a'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef > Edit </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button matTooltip="Click to Edit" class="iconbutton"
+                color="primary" (click)="edit(element)">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef > Delete </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button matTooltip="Click to Delete" class="iconbutton"
+                (click)="delete(element.id)" color="warn">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator #paginator
+                 [length]="totalData"
+                 [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons
+                 aria-label="Select page of elements">
+  </mat-paginator>
+</div>

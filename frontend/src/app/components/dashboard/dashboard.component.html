@@ -1,0 +1,25 @@
+<mat-grid-list cols="3" rowHeight="200px">
+  <mat-grid-tile>
+    <mat-card style="width: 90%; height: 100%;">
+      <mat-card-header><h2>Welcome on board!</h2></mat-card-header>
+      <mat-card-content>
+        Please administer the system with ease as assigned to you
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-flat-button  color="primary">Visit tasks List</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="2">
+    <mat-card style="width: 90%; height: 100%;">
+      <mat-card-header><h2>Statistics</h2></mat-card-header>
+      <mat-card-content>
+        <mat-grid-list cols="3" rowHeight="100px">
+          <mat-grid-tile><mat-icon>home</mat-icon><mat-label > <b>{{statistics?.applicationNum}}</b><br>Total Applications</mat-label></mat-grid-tile>
+          <mat-grid-tile><mat-icon color="-webkit-text-fill-color:green">thumb_up</mat-icon><mat-label> <b>{{statistics?.amlInprogressApp}}</b><br>AML Inprogress Applications</mat-label></mat-grid-tile>
+          <mat-grid-tile><mat-icon color="warn">check-circle</mat-icon><mat-label > <b>{{statistics?.incompleteApp}}</b><br>Incompleted Applications</mat-label></mat-grid-tile>
+        </mat-grid-list>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

@@ -1,0 +1,39 @@
+<h1 mat-dialog-title>{{title}}</h1>
+<div mat-dialog-content>
+  <div fxLayoutAlign="center center">
+    <form [formGroup]="applicationForm" (ngSubmit)="saveApp()">
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Sales Agent Id</mat-label>
+          <input matInput type="text"
+                 formControlName="salesAgentId" placeholder="Sales Agent Id">
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Account Type</mat-label>
+          <input matInput type="text"
+                 formControlName="accountType" placeholder="Account Type">
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Application Status</mat-label>
+          <input matInput type="text"
+                 formControlName="applicationStatus" placeholder="Application Status">
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Business Category</mat-label>
+          <input matInput type="text"
+                 formControlName="businessCategory" placeholder="Business Category">
+        </mat-form-field>
+      </p>
+    </form>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="closeDialog()">Close</button>
+  <button mat-button (click)="saveApp()">Save</button>
+</div>
